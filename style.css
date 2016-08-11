@@ -25,6 +25,7 @@ h1, h2 {
 
 #main {
   min-height: 72vh;
+  margin: 1em 3em;
 }
 
 .fieldset {
@@ -33,7 +34,9 @@ h1, h2 {
   width: 50%;
 }
 
-#submit-button {
+.results,
+#submit-button,
+#next-button {
   display: none;
 }
 
