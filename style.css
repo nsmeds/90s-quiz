@@ -1,0 +1,71 @@
+/**** Base Styles ****/ 
+
+body {
+  font-family: Lato;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+header {
+  font-size: 1.5em;
+  text-align: center;
+  color: white;
+  background-color: hsl(0,0%,60%);
+  background-image: url(img/flannel.jpg);
+  background-blend-mode: color-burn;
+  padding: 1em;
+}
+
+h1, h2 {
+  margin: 0;
+}
+
+/**** Main Content Styles ****/
+
+#main {
+  min-height: 72vh;
+}
+
+.fieldset {
+  display: none;
+  border: none;
+  width: 50%;
+}
+
+#submit-button {
+  display: none;
+}
+
+/**** Footer Styles ****/
+
+.icon-label {
+  margin: 0;
+  visibility: hidden;
+  font-size: 0.9em;
+  font-weight: 400;
+}
+
+footer ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+footer ul li {
+  min-width: 5em;
+  text-align: center;
+}
+
+footer ul li a {
+  padding: 25px 10px 1px 10px;
+}
+
+.social-icon:hover {
+ transform: translateY(-10px);
+ transition-duration: 0.3s;
+} 
+
+.social-icon:hover > .icon-label {
+  visibility: visible;
+}
