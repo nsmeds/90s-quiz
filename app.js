@@ -13,8 +13,8 @@ window.onload = function () {
 
   function checkAnswer() {
     for (var j = 0; j <= radios.length; radios++) {
-      if (radios.item('current').value === 'x') {
-        if (radios.item('current').checked === true) {
+      if (radios.item(current).value === 'x') {
+        if (radios.item(current).checked === true) {
           correct += 1;
           quiz.insertAdjacentHTML('afterbegin', '<h3 id="h3">Correct!</h3>');
         } else {
@@ -23,17 +23,18 @@ window.onload = function () {
         }
       }
     }
-    results.item('current').style.display = 'flex';
+    results.item(current).style.display = 'flex';
     submitButton.style.display = 'none';
     nextButton.style.display = 'flex';
     current += 1;
+    fieldset = fieldset.item(current);
   }
   
   function submit() {
     submitButton.addEventListener('click', function (event) {
       event.preventDefault();
-      fieldset.item('current').style.display = 'none';
-      results.item('current').style.display = 'flex';
+      fieldset.item(current).style.display = 'none';
+      results.item(current).style.display = 'flex';
       checkAnswer();
     });
   }
@@ -41,7 +42,7 @@ window.onload = function () {
   function displayQuiz() {
     for (var i = 0; i <= fieldset.length; i++) {
       nextButton.style.display = 'none';
-      fieldset.item('current').style.display = 'flex';
+      fieldset.item(current).style.display = 'flex';
       submitButton.style.display = 'flex';
       submit();
     }
@@ -54,7 +55,7 @@ window.onload = function () {
 
   nextButton.addEventListener('click', function (event) {
     document.getElementById('h3').innerHTML = '';
-    results.item('current').style.display = 'none';
+    results.item(current).style.display = 'none';
     displayQuiz();
   });
   
