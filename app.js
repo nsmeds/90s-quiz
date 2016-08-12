@@ -64,7 +64,6 @@ var quiz = [{
 
 
 function showQuestion() {
-  main.innerHTML = '';
   var quizContainer = document.createElement('div');
   quizContainer.innerHTML = "<p>" + quiz[i].question + "</p>";
   var options = quiz[i].choices;
@@ -86,26 +85,28 @@ function showQuestion() {
   submitButton.addEventListener('click', function checkAnswer() {
   'use strict';
   var userAnswer = document.querySelector('input:checked').id;
+  var explanation = document.createElement('p');
+  main.innerHTML = quiz[i].explanation + "<br>";
 //  console.log(userAnswer);
 //  console.log(quiz[i].correctAnswer);
     if (userAnswer == quiz[i].correctAnswer) {
-        rightAnswers += 1;
         main.insertAdjacentHTML('afterbegin', '<h3 id="h3">Correct!</h3>');
+        rightAnswers += 1;
       } else {
-        wrongAnswers += 1;
         main.insertAdjacentHTML('afterbegin', '<h3 id="h3">Incorrect!</h3>');
+        wrongAnswers += 1;
       }
 //  console.log(rightAnswers);
 //  console.log(wrongAnswers);
 
-  var explanation = document.createElement('p');
-  explanation.innerHTML = quiz[i].explanation;  
-  main.appendChild(explanation);
   main.appendChild(nextButton);
   i += 1;
 });
 }
 
+main.appendChild(nextButton);
+
 nextButton.addEventListener('click', function () {
-  showQuestion();
+  main.innerHTML = '';
+  showQuestion(i);
 });
