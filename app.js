@@ -9,7 +9,7 @@ window.onload = function () {
     results = document.getElementsByClassName('results'),
     submitButton = document.getElementById('submit-button'),
     nextButton = document.getElementById('next-button'),
-    radios = document.getElementsByName('question1');
+    radios = document.getElementsByName('question');
 
   function checkAnswer() {
     for (var j = 0; j <= radios.length; radios++) {
