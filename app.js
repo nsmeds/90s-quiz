@@ -4,15 +4,15 @@ window.onload = function () {
     incorrect = 0,
     current = 0,
     quiz = document.getElementById('quiz'),
-    begin = document.getElementById("begin-button"),
-    fieldset = document.getElementsByTagName("fieldset")[current],
-    results = document.getElementsByClassName("results")[current],
-    submitButton = document.getElementById("submit-button"),
-    nextButton = document.getElementById("next-button"),
-    radios = document.getElementsByTagName("input")[current];
+    begin = document.getElementById('begin-button'),
+    fieldset = document.getElementsByTagName('fieldset'),
+    results = document.getElementsByClassName('results'),
+    submitButton = document.getElementById('submit-button'),
+    nextButton = document.getElementById('next-button'),
+    radios = document.getElementsByTagName('input');
 
   function checkAnswer() {
-    if (radios.value == "x") {
+    if (radios.value == 'x') {
       if (radios.checked === true) {
         correct += 1;
         quiz.insertAdjacentHTML('afterbegin', '<h3 id="h3">Correct!</h3>');
@@ -22,7 +22,7 @@ window.onload = function () {
       }
     }
     current += 1;
-    results.style.display = 'flex';
+    results[current].style.display = 'flex';
     submitButton.style.display = 'none';
     nextButton.style.display = 'flex';
   }
@@ -31,19 +31,19 @@ window.onload = function () {
   function submit() {
     submitButton.addEventListener('click', function (event) {
       event.preventDefault();
-      fieldset.style.display = 'none';
-      results.style.display = 'flex';
+      fieldset[current].style.display = 'none';
+      results[current].style.display = 'flex';
       checkAnswer();
     });
   }
  
   function displayQuiz() {
-//  for (var i = 0; i <= fieldset.length; i++) {
-    nextButton.style.display = 'none';
-    fieldset.style.display = "flex";
-    submitButton.style.display = "flex";
-    submit();
-//  }
+    for (var i = 0; i <= fieldset.length; i++) {
+      nextButton.style.display = 'none';
+      fieldset[current].style.display = 'flex';
+      submitButton.style.display = 'flex';
+      submit();
+    }
   }
   
   begin.addEventListener('click', function (event) {
