@@ -64,7 +64,7 @@ var quiz = [{
   ];
 
 
-function showQuestion() {
+function displayQuiz() {
   main.innerHTML = '';
   var quizContainer = document.createElement('div');
   quizContainer.innerHTML = "<p>" + quiz[i].question + "</p>";
@@ -87,10 +87,7 @@ function showQuestion() {
   submitButton.addEventListener('click', function checkAnswer() {
   'use strict';
   var userAnswer = document.querySelector('input:checked').id;
-  var explanation = document.createElement('p');
-  main.innerHTML = quiz[i].explanation + "<br>";
-//  console.log(userAnswer);
-//  console.log(quiz[i].correctAnswer);
+  main.innerHTML = "<div>" + quiz[i].explanation + "</div>";
     if (userAnswer == quiz[i].correctAnswer) {
         main.insertAdjacentHTML('afterbegin', '<h3 id="h3">Correct!</h3>');
         rightAnswers += 1;
@@ -98,8 +95,8 @@ function showQuestion() {
         main.insertAdjacentHTML('afterbegin', '<h3 id="h3">Incorrect!</h3>');
         wrongAnswers += 1;
       }
-//  console.log(rightAnswers);
-//  console.log(wrongAnswers);
+  var pcnt = (100 * rightAnswers / (wrongAnswers + rightAnswers)).toFixed(1);
+  document.getElementById("results").innerHTML = 'Correct: ' + rightAnswers + '<br/>Incorrect: ' + wrongAnswers + '<br/>Percentage Correct: ' + pcnt + '%';
   main.appendChild(nextButton);
   i += 1;
 });
@@ -107,10 +104,10 @@ function showQuestion() {
 
 begin.addEventListener('click', function () {
   main.innerHTML = '';
-  showQuestion(i);
+  displayQuiz(i);
 });
 
 nextButton.addEventListener('click', function () {
   main.innerHTML = '';
-  showQuestion(i);
+  displayQuiz(i);
 });
