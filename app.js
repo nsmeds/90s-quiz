@@ -8,6 +8,7 @@ var nextButton = document.createElement("button");
 nextButton.type = "button";
 nextButton.textContent = "Next";
 var i = 0;
+var begin = document.getElementById("begin");
 
 var quiz = [{
   question: "Pavement's original drummer was:",
@@ -64,6 +65,7 @@ var quiz = [{
 
 
 function showQuestion() {
+  main.innerHTML = '';
   var quizContainer = document.createElement('div');
   quizContainer.innerHTML = "<p>" + quiz[i].question + "</p>";
   var options = quiz[i].choices;
@@ -98,13 +100,15 @@ function showQuestion() {
       }
 //  console.log(rightAnswers);
 //  console.log(wrongAnswers);
-
   main.appendChild(nextButton);
   i += 1;
 });
 }
 
-main.appendChild(nextButton);
+begin.addEventListener('click', function () {
+  main.innerHTML = '';
+  showQuestion(i);
+});
 
 nextButton.addEventListener('click', function () {
   main.innerHTML = '';
