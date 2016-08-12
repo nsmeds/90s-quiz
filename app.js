@@ -1,62 +1,51 @@
-window.onload = function () {
-  'use strict';
-  var correct = 0,
-    incorrect = 0,
-    current = 0,
-    quiz = document.getElementById('quiz'),
-    begin = document.getElementById('begin-button'),
-    fieldset = document.getElementsByTagName('fieldset'),
-    results = document.getElementsByClassName('results'),
-    submitButton = document.getElementById('submit-button'),
-    nextButton = document.getElementById('next-button'),
-    radios = document.getElementsByName('question');
+var quiz = [{
+  question: "Pavement's original drummer was:",
+  answers: ['Gary Young', 'John Bonham', 'Neil Peart', 'Animal', 'Josh Freese'],
+  correctAnswer: 0
+}, {
+  question: "The two principal members of Royal Trux went on to form all of the following bands except:",
+  answers: ['The Howling Hex', 'Black Bananas', 'RTX', 'XTC', 'Hagerty-Toth Band'],
+  correctAnswer: 3
+}, {
+  question: "Bill Callahan, aka Smog, wrote a zine by the name of:",
+  answers: ['Disaster', 'Proclivity', 'Supper', 'Apocalypse', 'Forced Exposure'],
+  correctAnswer: 0
+}, {
+  question: "Pacific Northwest record label Kill Rock Stars released albums by all the following except:",
+  answers: ['Elliott Smith', 'Deerhoof', 'Bratmobile', 'Miranda July', 'Beat Happening'],
+  correctAnswer: 4
+}, {
+  question: "Singer and guitarist Chan Marshall records and performs under the name:",
+  answers: ['Witchypoo', 'Cat Power', 'Courtney Love', 'Flying Nun', 'Slim Moon'],
+  correctAnswer: 1
+}, {
+  question: "Dale Crover has played drums for which of the following bands?",
+  answers: ['Guided by Voices and R.E.M.', 'Palace Brothers and King Kong', 'Murder City Devils and Lungfish', 'Melvins and Nirvana', 'Sebadoh and Dinosaur Jr.'],
+  correctAnswer: 3
+}, {
+  question: "Tortoise is from:",
+  answers: ['Los Angeles', 'Phoenix', 'Chicago', 'Berlin', 'New Paltz'],
+  correctAnswer: 2
+}, {
+  question: "The Elephant Six Collective included all of the following bands except:",
+  answer: ['Olivia Tremor Control', 'Neutral Milk Hotel', 'Apples In Stereo', 'Elf Power', 'Superchunk'],
+  correctAnswer: 4
+}, {
+  question: "Two members of Blonde Redhead are:",
+  answer: ['Psychics', 'Twins', 'Attorneys', 'Sisters', 'Cousins'],
+  correctAnswer: 1
+}, {
+  question: "Chris Lombardi is the founder of:",
+  answer: ['Matador Records', 'Homestead Records', 'Drag City Records', 'DGC Records', 'Merge Records'],
+  correctAnswer: 0
+}
+  ];
 
-  function checkAnswer() {
-    for (var j = 0; j <= radios.length; radios++) {
-      if (radios.item(current).value === 'x') {
-        if (radios.item(current).checked === true) {
-          correct += 1;
-          quiz.insertAdjacentHTML('afterbegin', '<h3 id="h3">Correct!</h3>');
-        } else {
-          incorrect += 1;
-          quiz.insertAdjacentHTML('afterbegin', '<h3 id="h3">Incorrect!</h3>');
-        }
-      }
-    }
-    results.item(current).style.display = 'flex';
-    submitButton.style.display = 'none';
-    nextButton.style.display = 'flex';
-    current += 1;
-    fieldset = fieldset.item(current);
-  }
+for (var i = 0; i <= quiz.length; i++) {
   
-  function submit() {
-    submitButton.addEventListener('click', function (event) {
-      event.preventDefault();
-      fieldset.item(current).style.display = 'none';
-      results.item(current).style.display = 'flex';
-      checkAnswer();
-    });
-  }
- 
-  function displayQuiz() {
-    for (var i = 0; i <= fieldset.length; i++) {
-      nextButton.style.display = 'none';
-      fieldset.item(current).style.display = 'flex';
-      submitButton.style.display = 'flex';
-      submit();
-    }
-  }
-  
-  begin.addEventListener('click', function (event) {
-    document.getElementById('welcome').style.display = 'none';
-    displayQuiz();
-  });
+}
 
-  nextButton.addEventListener('click', function (event) {
-    document.getElementById('h3').innerHTML = '';
-    results.item(current).style.display = 'none';
-    displayQuiz();
-  });
+
+function barGraph(arr) {
   
-};
+}
