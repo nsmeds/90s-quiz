@@ -2,11 +2,12 @@ var rightAnswers = 0;
 var wrongAnswers = 0;
 var main = document.getElementById("main");
 var submitButton = document.createElement("button");
-submitButton.type = "submit";
+submitButton.type = "button";
 submitButton.textContent = "Submit";
 var nextButton = document.createElement("button");
-nextButton.type = "submit";
+nextButton.type = "button";
 nextButton.textContent = "Next";
+var i = 0;
 
 var quiz = [{
   question: "Pavement's original drummer was:",
@@ -61,32 +62,50 @@ var quiz = [{
 }
   ];
 
+
 function showQuestion() {
-  
-}
-
-
-for (var i = 0; i < quiz[i].choices.length; i++) {
-  var explanation = document.createElement('p');
-  explanation.innerHTML = quiz[i].explanation;
+  main.innerHTML = '';
   var quizContainer = document.createElement('div');
   quizContainer.innerHTML = "<p>" + quiz[i].question + "</p>";
-
   var options = quiz[i].choices;
-  for (var opt in options) {
+  for (var k = 0; k < options.length; k++) {
     var radio = document.createElement('input');
     radio.type = "radio";
-    radio.value = options[opt];
+    radio.value = options[k];
     radio.name = "question"+i;
+    radio.id = options.indexOf(options[k]);
     quizContainer.appendChild(radio);
     var label = document.createElement('label');
-    label.innerHTML = options[opt];
+    label.innerHTML = options[k];
     quizContainer.appendChild(label);
     quizContainer.appendChild(document.createElement('br'));
-  }
-  
+}
+
   main.appendChild(quizContainer);
   main.appendChild(submitButton);
+  submitButton.addEventListener('click', function checkAnswer() {
+  'use strict';
+  var userAnswer = document.querySelector('input:checked').id;
+//  console.log(userAnswer);
+//  console.log(quiz[i].correctAnswer);
+    if (userAnswer == quiz[i].correctAnswer) {
+        rightAnswers += 1;
+        main.insertAdjacentHTML('afterbegin', '<h3 id="h3">Correct!</h3>');
+      } else {
+        wrongAnswers += 1;
+        main.insertAdjacentHTML('afterbegin', '<h3 id="h3">Incorrect!</h3>');
+      }
+//  console.log(rightAnswers);
+//  console.log(wrongAnswers);
+
+  var explanation = document.createElement('p');
+  explanation.innerHTML = quiz[i].explanation;  
   main.appendChild(explanation);
   main.appendChild(nextButton);
+  i += 1;
+});
 }
+
+nextButton.addEventListener('click', function () {
+  showQuestion();
+});
