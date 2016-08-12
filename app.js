@@ -13,15 +13,15 @@ window.onload = function () {
 
   function checkAnswer() {
     for (var j = 0; j <= radios.length; radios++) {
-    if (radios.item('current').value === 'x') {
-      if (radios.item('current').checked === true) {
-        correct += 1;
-        quiz.insertAdjacentHTML('afterbegin', '<h3 id="h3">Correct!</h3>');
-      } else {
-        incorrect += 1;
-        quiz.insertAdjacentHTML('afterbegin', '<h3 id="h3">Incorrect!</h3>');
+      if (radios.item('current').value === 'x') {
+        if (radios.item('current').checked === true) {
+          correct += 1;
+          quiz.insertAdjacentHTML('afterbegin', '<h3 id="h3">Correct!</h3>');
+        } else {
+          incorrect += 1;
+          quiz.insertAdjacentHTML('afterbegin', '<h3 id="h3">Incorrect!</h3>');
+        }
       }
-    }
     }
     results.item('current').style.display = 'flex';
     submitButton.style.display = 'none';
@@ -57,4 +57,5 @@ window.onload = function () {
     results.item('current').style.display = 'none';
     displayQuiz();
   });
+  
 };
