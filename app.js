@@ -1,5 +1,8 @@
+var pcnt;
+var i = 0;
 var rightAnswers = 0;
 var wrongAnswers = 0;
+var begin = document.getElementById("begin");
 var main = document.getElementById("main");
 var submitButton = document.createElement("button");
 submitButton.type = "button";
@@ -7,8 +10,9 @@ submitButton.textContent = "Submit";
 var nextButton = document.createElement("button");
 nextButton.type = "button";
 nextButton.textContent = "Next";
-var i = 0;
-var begin = document.getElementById("begin");
+var finishButton = document.createElement("button");
+finishButton.type = "button";
+finishButton.textContent = "See Your Results!";
 
 var quiz = [{
   question: "Pavement's original drummer was:",
@@ -95,11 +99,32 @@ function displayQuiz() {
         main.insertAdjacentHTML('afterbegin', '<h3 id="h3">Incorrect!</h3>');
         wrongAnswers += 1;
       }
-  var pcnt = (100 * rightAnswers / (wrongAnswers + rightAnswers)).toFixed(1);
+  pcnt = (100 * rightAnswers / (wrongAnswers + rightAnswers)).toFixed(1);
   document.getElementById("results").innerHTML = 'Correct: ' + rightAnswers + '<br/>Incorrect: ' + wrongAnswers + '<br/>Percentage Correct: ' + pcnt + '%';
-  main.appendChild(nextButton);
   i += 1;
+  if (i === quiz.length) {
+    main.appendChild(finishButton);
+  } else {
+    main.appendChild(nextButton);
+  }
 });
+}
+
+function displayResults() {
+  console.log(pcnt);
+  if (pcnt <= 20) {
+    main.innerHTML = 'Novice (0-20%): You are blissfully unaware of this period in music history, and probably better off for it.';
+  } else if (pcnt <= 40) {
+    main.innerHTML = 'Poseur (21-40%): Your trucker cap is weathered, but your knowledge is minimal.';
+  } else if (pcnt <= 60) {
+    main.innerHTML = 'Dilettante (41-59%): You may not have owned any zines, tapes or vinyl in the 1990s, but you have done some online research.';
+  } else if (pcnt <= 80) {
+    main.innerHTML = 'Nerd (60-79%): You were there, but you were killing brain cells at the time and there’s a lot you don’t recall.';
+  } else if (pcnt < 99) {
+    main.innerHTML = 'Expert (80-99%): Your knowledge is impressive, albeit useless.';
+  } else {
+    main.innerHTML = 'Omniscient Genius (100%): You deserve a medal, or a sealed first-pressing of “Spiderland.”';
+  }
 }
 
 begin.addEventListener('click', function () {
@@ -111,3 +136,8 @@ nextButton.addEventListener('click', function () {
   main.innerHTML = '';
   displayQuiz(i);
 });
+
+finishButton.addEventListener('click', function () {
+  main.innerHTML = '';
+  displayResults();
+})

@@ -14,10 +14,13 @@ header {
   background-color: hsl(0,0%,60%);
   background-image: url(img/flannel.jpg);
   background-blend-mode: color-burn;
-  padding: 1em;
 }
 
-h1, h2, h3, p {
+h1, h2 {
+  margin: 0.1em auto;
+}
+
+h3, p {
   margin: 0.5em auto;
 }
 
@@ -46,7 +49,7 @@ h1, h2, h3, p {
 
 #results {
   margin: 0.5em;
-  padding: 0.5em;
+  padding: 2em 0.5em;
   flex-grow: 1;
   text-align: center;
 }
