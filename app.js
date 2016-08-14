@@ -92,6 +92,14 @@ if (i === null || i === undefined) {
   displayQuiz(i);
 }
 
+if (rightAnswers == null) {
+  rightAnswers = 0;
+} // prevent scoreboard from displaying "null" after a page refresh
+
+if (wrongAnswers == null) {
+  wrongAnswers = 0;
+} // prevent scoreboard from displaying "null" after a page refresh
+
 function displayQuiz() {
   main.innerHTML = '';
   var quizContainer = document.createElement('div');
