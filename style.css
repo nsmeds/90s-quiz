@@ -1,7 +1,7 @@
 /**** Base Styles ****/ 
 
 body {
-  font-family: Lato;
+/*  font-family: Lato;*/
   display: flex;
   flex-direction: column;
   margin: 0;
@@ -53,6 +53,9 @@ h3, p {
   flex-grow: 1;
   text-align: center;
 }
+
+/**** Button Styles ****/
+
 
 /**** Footer Styles ****/
 

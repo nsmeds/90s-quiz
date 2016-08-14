@@ -1,9 +1,12 @@
 var pcnt;
-var i = 0;
+var i;
 var rightAnswers = 0;
 var wrongAnswers = 0;
-var begin = document.getElementById("begin");
 var main = document.getElementById("main");
+var results = document.getElementById("results");
+var beginButton = document.createElement("button");
+beginButton.type = "button";
+beginButton.textContent = "Begin!";
 var submitButton = document.createElement("button");
 submitButton.type = "button";
 submitButton.textContent = "Submit";
@@ -13,6 +16,12 @@ nextButton.textContent = "Next";
 var finishButton = document.createElement("button");
 finishButton.type = "button";
 finishButton.textContent = "See Your Results!";
+var clearButton = document.createElement("button");
+clearButton.type = "button";
+clearButton.textContent = "Start Over";
+clearButton.id = "clear-button";
+rightAnswers = JSON.parse(localStorage.getItem("currentRightAnswers"));
+wrongAnswers = JSON.parse(localStorage.getItem("currentWrongAnswers"));
 
 var quiz = [{
   question: "Pavement's original drummer was:",
@@ -64,9 +73,24 @@ var quiz = [{
   choices: ['Matador Records', 'Homestead Records', 'Drag City Records', 'DGC Records', 'Merge Records'],
   correctAnswer: 0,
   explanation: "<img src='img/chrislombardi.jpg' alt='Chris Lombardi'><br>Suave gentleman Chris Lombardi founded Matador Records in New York City in 1989. Now he is rich!"
-}
-  ];
+}];
 
+function welcome() {
+  main.textContent = "Ready to test your knowledge of 1990s indie rock culture? These ten probing questions will determine whether you have what it takes to properly reminisce with the disaffected slackers of yesteryear.";
+  main.appendChild(beginButton);
+}
+
+i = JSON.parse(localStorage.getItem("currentPage"));
+if (i === null || i === undefined) {
+  i = 0;
+  welcome();
+} else if (i === quiz.length) {
+  reset();
+  welcome();
+} else {
+  i = JSON.parse(localStorage.getItem("currentPage"));
+  displayQuiz(i);
+}
 
 function displayQuiz() {
   main.innerHTML = '';
@@ -91,21 +115,28 @@ function displayQuiz() {
   submitButton.addEventListener('click', function checkAnswer() {
   'use strict';
   var userAnswer = document.querySelector('input:checked').id;
+  localStorage.setItem("userAnswer", JSON.stringify(userAnswer));
+  userAnswer = JSON.parse(localStorage.getItem("userAnswer"));
   main.innerHTML = "<div>" + quiz[i].explanation + "</div>";
     if (userAnswer == quiz[i].correctAnswer) {
         main.insertAdjacentHTML('afterbegin', '<h3 id="h3">Correct!</h3>');
-        rightAnswers += 1;
+        rightAnswers += 1;  
+        localStorage.setItem("currentRightAnswers", rightAnswers);
+        rightAnswers = JSON.parse(localStorage.getItem("currentRightAnswers"));
       } else {
         main.insertAdjacentHTML('afterbegin', '<h3 id="h3">Incorrect!</h3>');
         wrongAnswers += 1;
+        localStorage.setItem("currentWrongAnswers", wrongAnswers);
       }
   pcnt = (100 * rightAnswers / (wrongAnswers + rightAnswers)).toFixed(1);
-  document.getElementById("results").innerHTML = 'Correct: ' + rightAnswers + '<br/>Incorrect: ' + wrongAnswers + '<br/>Percentage Correct: ' + pcnt + '%';
-  i += 1;
+  results.innerHTML = 'Correct: ' + rightAnswers + '<br>Incorrect: ' + wrongAnswers + '<br>Percentage Correct: ' + pcnt + '%' + '<br>';
+  i += 1;  
+  localStorage.setItem("currentPage", i);
   if (i === quiz.length) {
     main.appendChild(finishButton);
   } else {
     main.appendChild(nextButton);
+    results.appendChild(clearButton);
   }
 });
 }
@@ -127,7 +158,16 @@ function displayResults() {
   }
 }
 
-begin.addEventListener('click', function () {
+function reset() {
+  localStorage.clear();
+  rightAnswers = 0;
+  wrongAnswers = 0;
+  i = 0;
+  main.innerHTML = '';
+  results.innerHTML = '';
+}
+
+beginButton.addEventListener('click', function () {
   main.innerHTML = '';
   displayQuiz(i);
 });
@@ -137,7 +177,13 @@ nextButton.addEventListener('click', function () {
   displayQuiz(i);
 });
 
+clearButton.addEventListener('click', function () {
+  reset();
+  welcome();
+});
+
 finishButton.addEventListener('click', function () {
   main.innerHTML = '';
   displayResults();
-})
+  results.appendChild(clearButton);
+});
