@@ -76,7 +76,7 @@ var quiz = [{
 }];
 
 function welcome() {
-  main.textContent = "Ready to test your knowledge of 1990s indie rock culture? These ten probing questions will determine whether you have what it takes to properly reminisce with the disaffected slackers of yesteryear.";
+  main.innerHTML = "<p>Ready to test your knowledge of 1990s indie rock culture? These ten probing questions will determine whether you have what it takes to properly reminisce with the disaffected slackers of yesteryear.</p>";
   main.appendChild(beginButton);
 }
 
@@ -136,12 +136,14 @@ function displayQuiz() {
         wrongAnswers += 1;
         localStorage.setItem("currentWrongAnswers", wrongAnswers);
       }
-  pcnt = (100 * rightAnswers / (wrongAnswers + rightAnswers)).toFixed(1);
-  results.innerHTML = 'Correct: ' + rightAnswers + '<br>Incorrect: ' + wrongAnswers + '<br>Percentage Correct: ' + pcnt + '%' + '<br>';
+
+  showResults();
   i += 1;  
   localStorage.setItem("currentPage", i);
   if (i === quiz.length) {
-    main.appendChild(finishButton);
+//    main.appendChild(finishButton);
+//    results.appendChild(finishButton);
+    displayResults();
   } else {
     main.appendChild(nextButton);
     results.appendChild(clearButton);
@@ -149,10 +151,16 @@ function displayQuiz() {
 });
 }
 
+function showResults () {
+  pcnt = (100 * rightAnswers / (wrongAnswers + rightAnswers)).toFixed();
+  results.innerHTML = 'Correct: ' + rightAnswers + '<br>Incorrect: ' + wrongAnswers + '<br>';
+}
+
 function displayResults() {
-  console.log(pcnt);
+  results.innerHTML = 'Correct: ' + rightAnswers + '<br>Incorrect: ' + wrongAnswers + '<br>Percentage Correct: ' + pcnt + '%<br>';
+  results.insertAdjacentHTML('beforeend', '<br><h3>Results</h3>');
   if (pcnt <= 20) {
-    main.innerHTML = 'Novice (0-20%): You are blissfully unaware of this period in music history, and probably better off for it.';
+    results.insertAdjacentHTML('beforeend', 'Novice (0-20%): You are blissfully unaware of this period in music history, and probably better off for it.');
   } else if (pcnt <= 40) {
     main.innerHTML = 'Poseur (21-40%): Your trucker cap is weathered, but your knowledge is minimal.';
   } else if (pcnt <= 60) {
@@ -164,6 +172,8 @@ function displayResults() {
   } else {
     main.innerHTML = 'Omniscient Genius (100%): You deserve a medal, or a sealed first-pressing of “Spiderland.”';
   }
+  results.insertAdjacentHTML('beforeend', '<br>')
+  results.appendChild(clearButton);
 }
 
 function reset() {
@@ -174,6 +184,10 @@ function reset() {
   main.innerHTML = '';
   results.innerHTML = '';
 }
+
+window.onbeforeunload = (
+  showResults()
+);
 
 beginButton.addEventListener('click', function () {
   main.innerHTML = '';
@@ -193,5 +207,4 @@ clearButton.addEventListener('click', function () {
 finishButton.addEventListener('click', function () {
   main.innerHTML = '';
   displayResults();
-  results.appendChild(clearButton);
 });
