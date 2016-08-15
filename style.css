@@ -48,8 +48,8 @@ h3, p {
 }
 
 #quiz-container {
-  padding-left: 5vh;
-  padding-right: 5vh;
+  padding-left: 5vw;
+  padding-right: 5vw;
 }
 
 #quiz-container img {
@@ -167,7 +167,11 @@ footer ul li a {
     padding-top: 0.5em;
   }
   
+  #quiz-container {
+    max-width: 100%;
+  }
+  
   #quiz-container img {
-    max-width: 90vw;
+    max-width: 100%;
   }
 }
