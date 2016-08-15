@@ -68,7 +68,7 @@ h3, p {
   text-align: center;
 }
 
-.scoreboard {
+#scoreboard {
   color: #fff;
   width: 7em;
   margin: 0 auto;

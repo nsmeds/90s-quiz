@@ -1,5 +1,5 @@
 var pcnt;
-var i;
+var count;
 var rightAnswers = 0;
 var wrongAnswers = 0;
 var quizContainer = document.getElementById("quiz-container");
@@ -80,16 +80,16 @@ function welcome() {
   quizContainer.style.maxWidth = '600px';
 }
 
-i = JSON.parse(localStorage.getItem("currentPage"));
-if (i === null || i === undefined) {
-  i = 0;
+count = JSON.parse(localStorage.getItem("currentPage"));
+if (count === null || count === undefined) {
+  count = 0;
   welcome();
-} else if (i === quiz.length) {
+} else if (count === quiz.length) {
   reset();
   welcome();
 } else {
-  i = JSON.parse(localStorage.getItem("currentPage"));
-  displayQuiz(i);
+  count = JSON.parse(localStorage.getItem("currentPage"));
+  displayQuiz(count);
 }
 
 if (rightAnswers == null) {
@@ -101,13 +101,13 @@ if (wrongAnswers == null) {
 } // prevent scoreboard from displaying "null" after a page refresh
 
 function displayQuiz() {
-  quizContainer.innerHTML = "<p>" + quiz[i].question + "</p>";
-  var options = quiz[i].choices;
+  quizContainer.innerHTML = "<p>" + (count + 1) + ". " + quiz[count].question + "</p>";
+  var options = quiz[count].choices;
   for (var k = 0; k < options.length; k++) {
     var radio = document.createElement('input');
     radio.type = "radio";
     radio.value = options[k];
-    radio.name = "question"+i;
+    radio.name = "question"+count;
     radio.id = options.indexOf(options[k]);
     quizContainer.appendChild(radio);
     var label = document.createElement('label');
@@ -122,8 +122,8 @@ function displayQuiz() {
   var userAnswer = document.querySelector('input:checked').id;
   localStorage.setItem("userAnswer", JSON.stringify(userAnswer));
   userAnswer = JSON.parse(localStorage.getItem("userAnswer"));
-  quizContainer.innerHTML = "<div>" + quiz[i].explanation + "</div>";
-    if (userAnswer == quiz[i].correctAnswer) {
+  quizContainer.innerHTML = "<div>" + quiz[count].explanation + "</div>";
+    if (userAnswer == quiz[count].correctAnswer) {
         quizContainer.insertAdjacentHTML('afterbegin', '<h3 id="h3">Correct!</h3>');
         rightAnswers += 1;  
         localStorage.setItem("currentRightAnswers", rightAnswers);
@@ -135,9 +135,9 @@ function displayQuiz() {
       }
 
   showResults();
-  i += 1;  
-  localStorage.setItem("currentPage", i);
-  if (i === quiz.length) {
+  count += 1;  
+  localStorage.setItem("currentPage", count);
+  if (count === quiz.length) {
     displayResults();
   } else {
     quizContainer.appendChild(nextButton);
@@ -148,12 +148,14 @@ function displayQuiz() {
 
 function showResults () {
   pcnt = (100 * rightAnswers / (wrongAnswers + rightAnswers)).toFixed();
-  results.innerHTML = '<div class="scoreboard">Correct: <span class="right">' + rightAnswers + '</span><br>Incorrect:  <span class="wrong">' + wrongAnswers + '</span><br></div>';
+  results.innerHTML = '<div id="scoreboard">Correct: <span class="right">' + rightAnswers + '</span><br>Incorrect:  <span class="wrong">' + wrongAnswers + '</span><br></div>';
+  if (pcnt >= 0) {
+    document.getElementById("scoreboard").insertAdjacentHTML('beforeend','<br>Score: ' + pcnt + '%<br>');
+        }
   results.appendChild(clearButton);
 }
 
 function displayResults() {
-  results.innerHTML = '<div class="scoreboard">Correct: <span class="right">' + rightAnswers + '</span><br>Incorrect:  <span class="wrong">' + wrongAnswers + '</span><br><br>Score: ' + pcnt + '%<br></div>';
   results.insertAdjacentHTML('beforeend', '<br><h3>Results</h3>');
   if (pcnt <= 20) {
     results.insertAdjacentHTML('beforeend', 'Novice (0-20%): You are blissfully unaware of this period in music history, and probably better off for it.');
@@ -162,7 +164,7 @@ function displayResults() {
   } else if (pcnt <= 60) {
     results.insertAdjacentHTML('beforeend', 'Dilettante (41-59%): You may not have owned any zines, tapes or vinyl in the 1990s, but you have done some online research.');
   } else if (pcnt <= 80) {
-    results.insertAdjacentHTML('beforeend', 'Nerd (60-79%): You were there, but you were killing brain cells at the time and there’s a lot you don’t recall.');
+    results.insertAdjacentHTML('beforeend', 'Nerd (60-79%): You were there at the time, but your memory is a little fuzzy.');
   } else if (pcnt < 99) {
     results.insertAdjacentHTML('beforeend', 'Expert (80-99%): Your knowledge is impressive, albeit useless.');
   } else {
@@ -176,7 +178,7 @@ function reset() {
   localStorage.clear();
   rightAnswers = 0;
   wrongAnswers = 0;
-  i = 0;
+  count = 0;
   quizContainer.innerHTML = '';
   results.innerHTML = '';
 }
@@ -189,13 +191,13 @@ beginButton.addEventListener('click', function () {
   quizContainer.innerHTML = '';
   quizContainer.style.textAlign = 'left';
   results.style.display = 'block';
-  displayQuiz(i);
+  displayQuiz(count);
   showResults();
 });
 
 nextButton.addEventListener('click', function () {
   quizContainer.innerHTML = '';
-  displayQuiz(i);
+  displayQuiz(count);
 });
 
 clearButton.addEventListener('click', function () {
