@@ -167,10 +167,7 @@ footer ul li a {
     padding-top: 0.5em;
   }
   
-  #quiz-container {
-    max-width: 100%;
-  }
-  
+  #quiz-container,
   #quiz-container img {
     max-width: 100%;
   }
