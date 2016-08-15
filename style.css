@@ -10,11 +10,14 @@ body {
 header {
   font-size: 1.5em;
   text-align: center;
-  color: white;
-  background-color: hsl(0,0%,60%);
-  background-image: url(img/flannel.jpg);
-  background-blend-mode: color-burn;
 }
+
+header, footer {
+  color: #fff;
+  background-color: hsl(2, 57%, 40%);
+  background-image: repeating-linear-gradient(transparent, transparent 50px, rgba(0,0,0,.4) 50px, rgba(0,0,0,.4) 53px, transparent 53px, transparent 63px, rgba(0,0,0,.4) 63px, rgba(0,0,0,.4) 66px, transparent 66px, transparent 116px, rgba(0,0,0,.5) 116px, rgba(0,0,0,.5) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px, rgba(0,0,0,.5) 169px, rgba(0,0,0,.5) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px, rgba(0,0,0,.5) 182px, rgba(0,0,0,.5) 232px, transparent 232px),
+repeating-linear-gradient(270deg, transparent, transparent 50px, rgba(0,0,0,.4) 50px, rgba(0,0,0,.4) 53px, transparent 53px, transparent 63px, rgba(0,0,0,.4) 63px, rgba(0,0,0,.4) 66px, transparent 66px, transparent 116px, rgba(0,0,0,.5) 116px, rgba(0,0,0,.5) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px, rgba(0,0,0,.5) 169px, rgba(0,0,0,.5) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px, rgba(0,0,0,.5) 182px, rgba(0,0,0,.5) 232px, transparent 232px),
+repeating-linear-gradient(125deg, transparent, transparent 2px, rgba(0,0,0,.2) 2px, rgba(0,0,0,.2) 3px, transparent 3px, transparent 5px, rgba(0,0,0,.2) 5px);}
 
 h1, h2 {
   margin: 0.1em auto;
@@ -30,21 +33,25 @@ h3, p {
 
 #wrap {
   display: flex;
-  min-height: 72vh;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 67vh;
   margin: 1em 1em;
 }
 
-#main img {
-  height: 50vh;
-}
-
-#main, 
-#results {
-  flex-basis: 0;
-}
-
 #main {
-  flex-grow: 2;
+/*  max-height: 50vh;*/
+}
+
+#main img {
+/*  height: 50vw;*/
+  max-width: 90vw;
+}
+
+.col {
+  flex: 1;
+  padding: 1em;
+  margin: 1em auto;
 }
 
 #results {
@@ -88,4 +95,10 @@ footer ul li a {
 
 .social-icon:hover > .icon-label {
   visibility: visible;
+}
+
+/**** Media Query ****/
+
+@media screen and (max-width: 500px) {
+  
 }

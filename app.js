@@ -37,9 +37,9 @@ var quiz = [{
   explanation: "<img src='img/disaster.jpg' alt='Disaster, the zine'><br>Bill's zine was called Disaster, and so was the label on which he self-released his early recordings."
 }, {
   question: "Pacific Northwest record label Kill Rock Stars released albums by all the following except:",
-  choices: ['Elliott Smith', 'Deerhoof', 'Bratmobile', 'Miranda July', 'Beat Happening'],
+  choices: ['Elliott Smith', 'Deerhoof', 'Bratmobile', 'Miranda July', 'Dub Narcotic Sound System'],
   correctAnswer: 4,
-  explanation: "<img src='img/krs.jpg' alt='Kill Rock Stars'><br>Beat Happening was led by Calvin Johnson, founder of K Records - the 'other' Olympia label and the supposed archrival of Kill Rock Stars."
+  explanation: "<img src='img/krs.jpg' alt='Kill Rock Stars'><br>Dub Narcotic Sound System was led by Calvin Johnson, founder of K Records - the 'other' Olympia label and the supposed archrival of Kill Rock Stars."
 }, {
   question: "Singer and guitarist Chan Marshall records and performs under the name:",
   choices: ['Witchypoo', 'Cat Power', 'Courtney Love', 'Flying Nun', 'Slim Moon'],
