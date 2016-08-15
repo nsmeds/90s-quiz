@@ -124,12 +124,12 @@ function displayQuiz() {
   userAnswer = JSON.parse(localStorage.getItem("userAnswer"));
   quizContainer.innerHTML = "<div>" + quiz[count].explanation + "</div>";
     if (userAnswer == quiz[count].correctAnswer) {
-        quizContainer.insertAdjacentHTML('afterbegin', '<h3 id="h3">Correct!</h3>');
+        quizContainer.insertAdjacentHTML('afterbegin', '<h3>Correct!</h3>');
         rightAnswers += 1;  
         localStorage.setItem("currentRightAnswers", rightAnswers);
         rightAnswers = JSON.parse(localStorage.getItem("currentRightAnswers"));
       } else {
-        quizContainer.insertAdjacentHTML('afterbegin', '<h3 id="h3">Incorrect!</h3>');
+        quizContainer.insertAdjacentHTML('afterbegin', '<h3>Incorrect!</h3>');
         wrongAnswers += 1;
         localStorage.setItem("currentWrongAnswers", wrongAnswers);
       }
@@ -141,7 +141,7 @@ function displayQuiz() {
     displayResults();
   } else {
     quizContainer.appendChild(nextButton);
-    results.appendChild(clearButton);
+    document.getElementById("scoreboard").appendChild(clearButton);
   }
 });
 }
@@ -152,7 +152,7 @@ function showResults () {
   if (pcnt >= 0) {
     document.getElementById("scoreboard").insertAdjacentHTML('beforeend','<br>Score: ' + pcnt + '%<br>');
         }
-  results.appendChild(clearButton);
+  document.getElementById("scoreboard").appendChild(clearButton);
 }
 
 function displayResults() {
@@ -171,7 +171,7 @@ function displayResults() {
     results.insertAdjacentHTML('beforeend', 'Omniscient Genius (100%): You deserve a medal, or a sealed first-pressing of “Spiderland.”');
   }
   results.insertAdjacentHTML('beforeend', '<br>');
-  results.appendChild(clearButton);
+  document.getElementById("scoreboard").appendChild(clearButton);
 }
 
 function reset() {
@@ -185,7 +185,7 @@ function reset() {
 
 window.onbeforeunload = (
   showResults()
-);
+); // prevent scoreboard from disappearing on page refresh
 
 beginButton.addEventListener('click', function () {
   quizContainer.innerHTML = '';

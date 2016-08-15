@@ -6,21 +6,17 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
-  height: 100%;
+  min-height: 100vh;
   background-color: hsl(2, 57%, 100%);
   background-image: repeating-linear-gradient(transparent, transparent 50px, rgba(0,0,0,.025) 50px, rgba(0,0,0,.025) 53px, transparent 53px, transparent 63px, rgba(0,0,0,.025) 63px, rgba(0,0,0,.025) 66px, transparent 66px, transparent 116px, rgba(0,0,0,.029) 116px, rgba(0,0,0,.029) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px, rgba(0,0,0,.029) 169px, rgba(0,0,0,.029) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px, rgba(0,0,0,.029) 182px, rgba(0,0,0,.029) 232px, transparent 232px),
 repeating-linear-gradient(270deg, transparent, transparent 50px, rgba(0,0,0,.025) 50px, rgba(0,0,0,.025) 53px, transparent 53px, transparent 63px, rgba(0,0,0,.025) 63px, rgba(0,0,0,.025) 66px, transparent 66px, transparent 116px, rgba(0,0,0,.029) 116px, rgba(0,0,0,.029) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px, rgba(0,0,0,.029) 169px, rgba(0,0,0,.029) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px, rgba(0,0,0,.029) 182px, rgba(0,0,0,.029) 232px, transparent 232px),
-repeating-linear-gradient(125deg, transparent, transparent 2px, rgba(0,0,0,.07) 2px, rgba(0,0,0,.07) 3px, transparent 3px, transparent 5px, rgba(0,0,0,.07) 5px);
+repeating-linear-gradient(125deg, transparent, transparent 2px, rgba(0,0,0,.05) 2px, rgba(0,0,0,.05) 3px, transparent 3px, transparent 5px, rgba(0,0,0,.05) 5px);
 }
 
 header {
+  padding: 0.2em;
   font-size: 1.3em;
   text-align: center;
-  padding: 0.2em;
-  height: 16vh;
-}
-
-header, footer {
   color: #fff;
   background-color: hsl(2, 57%, 40%);
   background-image: repeating-linear-gradient(transparent, transparent 50px, rgba(0,0,0,.4) 50px, rgba(0,0,0,.4) 53px, transparent 53px, transparent 63px, rgba(0,0,0,.4) 63px, rgba(0,0,0,.4) 66px, transparent 66px, transparent 116px, rgba(0,0,0,.5) 116px, rgba(0,0,0,.5) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px, rgba(0,0,0,.5) 169px, rgba(0,0,0,.5) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px, rgba(0,0,0,.5) 182px, rgba(0,0,0,.5) 232px, transparent 232px),
@@ -43,7 +39,6 @@ h3, p {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  min-height: 66vh;
   margin: 2em 1em 1em 1em;
 }
 
@@ -72,10 +67,16 @@ h3, p {
   color: #fff;
   width: 7em;
   margin: 0 auto;
-  padding: 1em;
+  padding: 1em 3em;
   border-radius: 5px;
-  border: 1px solid hsl(60,100%,50%);
+  border: 1px solid hsl(60,100%,100%);
   background-color: hsl(0,100%,4%);
+}
+
+#scoreboard button {
+  color: #000;
+  margin-top: 1em;
+  margin-bottom: 0.25em;
 }
 
 .right {
@@ -112,14 +113,15 @@ button:focus {
 /**** Footer Styles ****/
 
 footer {
-  height: 10vh;
+  margin-top: auto;
 }
 
 .icon-label {
   margin: 0;
   visibility: hidden;
+  color: hsl(2,57%,40%);
   font-size: 0.9em;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 footer ul {
@@ -159,7 +161,10 @@ footer ul li a {
   #wrap {
     margin-top: 1em;
     margin-bottom: 0;
-    min-height: 77vh;
+  }
+  
+  #results {
+    padding-top: 0.5em;
   }
   
   #quiz-container img {
