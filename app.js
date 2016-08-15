@@ -13,9 +13,6 @@ submitButton.textContent = "Submit";
 var nextButton = document.createElement("button");
 nextButton.type = "button";
 nextButton.textContent = "Next";
-var finishButton = document.createElement("button");
-finishButton.type = "button";
-finishButton.textContent = "See Your Results!";
 var clearButton = document.createElement("button");
 clearButton.type = "button";
 clearButton.textContent = "Start Over";
@@ -141,8 +138,6 @@ function displayQuiz() {
   i += 1;  
   localStorage.setItem("currentPage", i);
   if (i === quiz.length) {
-//    main.appendChild(finishButton);
-//    results.appendChild(finishButton);
     displayResults();
   } else {
     main.appendChild(nextButton);
@@ -154,6 +149,7 @@ function displayQuiz() {
 function showResults () {
   pcnt = (100 * rightAnswers / (wrongAnswers + rightAnswers)).toFixed();
   results.innerHTML = 'Correct: ' + rightAnswers + '<br>Incorrect: ' + wrongAnswers + '<br>';
+  results.appendChild(clearButton);
 }
 
 function displayResults() {
@@ -162,15 +158,15 @@ function displayResults() {
   if (pcnt <= 20) {
     results.insertAdjacentHTML('beforeend', 'Novice (0-20%): You are blissfully unaware of this period in music history, and probably better off for it.');
   } else if (pcnt <= 40) {
-    main.innerHTML = 'Poseur (21-40%): Your trucker cap is weathered, but your knowledge is minimal.';
+    results.insertAdjacentHTML('beforeend', 'Poseur (21-40%): Your trucker cap is weathered, but your knowledge is minimal.');
   } else if (pcnt <= 60) {
-    main.innerHTML = 'Dilettante (41-59%): You may not have owned any zines, tapes or vinyl in the 1990s, but you have done some online research.';
+    results.insertAdjacentHTML('beforeend', 'Dilettante (41-59%): You may not have owned any zines, tapes or vinyl in the 1990s, but you have done some online research.');
   } else if (pcnt <= 80) {
-    main.innerHTML = 'Nerd (60-79%): You were there, but you were killing brain cells at the time and there’s a lot you don’t recall.';
+    results.insertAdjacentHTML('beforeend', 'Nerd (60-79%): You were there, but you were killing brain cells at the time and there’s a lot you don’t recall.');
   } else if (pcnt < 99) {
-    main.innerHTML = 'Expert (80-99%): Your knowledge is impressive, albeit useless.';
+    results.insertAdjacentHTML('beforeend', 'Expert (80-99%): Your knowledge is impressive, albeit useless.');
   } else {
-    main.innerHTML = 'Omniscient Genius (100%): You deserve a medal, or a sealed first-pressing of “Spiderland.”';
+    results.insertAdjacentHTML('beforeend', 'Omniscient Genius (100%): You deserve a medal, or a sealed first-pressing of “Spiderland.”');
   }
   results.insertAdjacentHTML('beforeend', '<br>')
   results.appendChild(clearButton);
@@ -202,9 +198,4 @@ nextButton.addEventListener('click', function () {
 clearButton.addEventListener('click', function () {
   reset();
   welcome();
-});
-
-finishButton.addEventListener('click', function () {
-  main.innerHTML = '';
-  displayResults();
 });
