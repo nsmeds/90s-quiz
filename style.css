@@ -1,16 +1,23 @@
 /**** Base Styles ****/ 
 
+
 body {
   font-family: Lato;
   display: flex;
   flex-direction: column;
   margin: 0;
   height: 100%;
+  background-color: hsl(2, 57%, 100%);
+  background-image: repeating-linear-gradient(transparent, transparent 50px, rgba(0,0,0,.025) 50px, rgba(0,0,0,.025) 53px, transparent 53px, transparent 63px, rgba(0,0,0,.025) 63px, rgba(0,0,0,.025) 66px, transparent 66px, transparent 116px, rgba(0,0,0,.029) 116px, rgba(0,0,0,.029) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px, rgba(0,0,0,.029) 169px, rgba(0,0,0,.029) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px, rgba(0,0,0,.029) 182px, rgba(0,0,0,.029) 232px, transparent 232px),
+repeating-linear-gradient(270deg, transparent, transparent 50px, rgba(0,0,0,.025) 50px, rgba(0,0,0,.025) 53px, transparent 53px, transparent 63px, rgba(0,0,0,.025) 63px, rgba(0,0,0,.025) 66px, transparent 66px, transparent 116px, rgba(0,0,0,.029) 116px, rgba(0,0,0,.029) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px, rgba(0,0,0,.029) 169px, rgba(0,0,0,.029) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px, rgba(0,0,0,.029) 182px, rgba(0,0,0,.029) 232px, transparent 232px),
+repeating-linear-gradient(125deg, transparent, transparent 2px, rgba(0,0,0,.07) 2px, rgba(0,0,0,.07) 3px, transparent 3px, transparent 5px, rgba(0,0,0,.07) 5px);
 }
 
 header {
-  font-size: 1.5em;
+  font-size: 1.3em;
   text-align: center;
+  padding: 0.2em;
+  height: 16vh;
 }
 
 header, footer {
@@ -36,12 +43,13 @@ h3, p {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  min-height: 65vh;
+  min-height: 66vh;
   margin: 2em 1em 1em 1em;
 }
 
 .col {
   flex: 1 1 15em;
+  margin-bottom: 1em;
 }
 
 #quiz-container {
@@ -144,4 +152,17 @@ footer ul li a {
 
 @media screen and (max-width: 500px) {
   
+  header {
+    font-size: 1em;
+  }
+  
+  #wrap {
+    margin-top: 1em;
+    margin-bottom: 0;
+    min-height: 77vh;
+  }
+  
+  #quiz-container img {
+    max-width: 90vw;
+  }
 }
