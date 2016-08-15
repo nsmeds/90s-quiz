@@ -5,6 +5,7 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
+  height: 100%;
 }
 
 header {
@@ -17,7 +18,8 @@ header, footer {
   background-color: hsl(2, 57%, 40%);
   background-image: repeating-linear-gradient(transparent, transparent 50px, rgba(0,0,0,.4) 50px, rgba(0,0,0,.4) 53px, transparent 53px, transparent 63px, rgba(0,0,0,.4) 63px, rgba(0,0,0,.4) 66px, transparent 66px, transparent 116px, rgba(0,0,0,.5) 116px, rgba(0,0,0,.5) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px, rgba(0,0,0,.5) 169px, rgba(0,0,0,.5) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px, rgba(0,0,0,.5) 182px, rgba(0,0,0,.5) 232px, transparent 232px),
 repeating-linear-gradient(270deg, transparent, transparent 50px, rgba(0,0,0,.4) 50px, rgba(0,0,0,.4) 53px, transparent 53px, transparent 63px, rgba(0,0,0,.4) 63px, rgba(0,0,0,.4) 66px, transparent 66px, transparent 116px, rgba(0,0,0,.5) 116px, rgba(0,0,0,.5) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px, rgba(0,0,0,.5) 169px, rgba(0,0,0,.5) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px, rgba(0,0,0,.5) 182px, rgba(0,0,0,.5) 232px, transparent 232px),
-repeating-linear-gradient(125deg, transparent, transparent 2px, rgba(0,0,0,.2) 2px, rgba(0,0,0,.2) 3px, transparent 3px, transparent 5px, rgba(0,0,0,.2) 5px);}
+repeating-linear-gradient(125deg, transparent, transparent 2px, rgba(0,0,0,.2) 2px, rgba(0,0,0,.2) 3px, transparent 3px, transparent 5px, rgba(0,0,0,.2) 5px);
+}
 
 h1, h2 {
   margin: 0.1em auto;
@@ -29,42 +31,81 @@ h3, p {
 
 /**** Main Content Styles ****/
 
-
-
 #wrap {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  min-height: 67vh;
-  margin: 1em 1em;
-}
-
-#main {
-/*  max-height: 50vh;*/
-}
-
-#main img {
-/*  height: 50vw;*/
-  max-width: 90vw;
+  min-height: 65vh;
+  margin: 2em 1em 1em 1em;
 }
 
 .col {
-  flex: 1;
-  padding: 1em;
-  margin: 1em auto;
+  flex: 1 1 15em;
+}
+
+#quiz-container {
+  padding-left: 5vh;
+  padding-right: 5vh;
+}
+
+#quiz-container img {
+  max-width: 50vw;
+  max-height: 50vh;
+  border-radius: 10px;
 }
 
 #results {
-  margin: 0.5em;
-  padding: 2em 0.5em;
-  flex-grow: 1;
+  padding: 1em 0.5em;
   text-align: center;
+}
+
+.scoreboard {
+  color: #fff;
+  width: 7em;
+  margin: 0 auto;
+  padding: 1em;
+  border-radius: 5px;
+  border: 1px solid hsl(60,100%,50%);
+  background-color: hsl(0,100%,4%);
+}
+
+.right {
+  color: hsl(60,100%,50%);
+}
+
+.wrong {
+  color: hsl(0,100%,60%);
 }
 
 /**** Button Styles ****/
 
+button {
+  color: inherit;
+  border: 1px solid hsl(0,0%,30%);
+  background-color: #fff;
+  border-radius: 3px;
+  margin: 0.75em auto;
+}
+
+button:active {
+  background-color: hsl(180,0%,80%);
+  color: #fff;
+  border-color: #fff;
+  border-radius: 3px;
+  box-shadow: inset 1 5px 5px -5px hsl(190,10%,10%);
+}
+
+button:focus {
+  outline: none;
+}
+
 
 /**** Footer Styles ****/
+
+footer {
+  height: 10vh;
+}
 
 .icon-label {
   margin: 0;
@@ -77,6 +118,7 @@ footer ul {
   display: flex;
   justify-content: center;
   list-style: none;
+  padding-top: 1em;
 }
 
 footer ul li {
@@ -85,7 +127,8 @@ footer ul li {
 }
 
 footer ul li a {
-  padding: 25px 10px 1px 10px;
+  padding: 25px 10px 0px 10px;
+  margin-top: 0;
 }
 
 .social-icon:hover {

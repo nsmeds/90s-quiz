@@ -2,7 +2,7 @@ var pcnt;
 var i;
 var rightAnswers = 0;
 var wrongAnswers = 0;
-var main = document.getElementById("main");
+var quizContainer = document.getElementById("quiz-container");
 var results = document.getElementById("results");
 var beginButton = document.createElement("button");
 beginButton.type = "button";
@@ -73,8 +73,11 @@ var quiz = [{
 }];
 
 function welcome() {
-  main.innerHTML = "<p>Ready to test your knowledge of 1990s indie rock culture? These ten probing questions will determine whether you have what it takes to properly reminisce with the disaffected slackers of yesteryear.</p>";
-  main.appendChild(beginButton);
+  results.style.display = 'none';
+  quizContainer.innerHTML = "<p>Ready to test your knowledge of 1990s indie rock culture? These ten probing questions will determine whether you have what it takes to properly reminisce with the disaffected slackers of yesteryear.</p>";
+  quizContainer.appendChild(beginButton);
+  quizContainer.style.textAlign = 'center';
+  quizContainer.style.maxWidth = '600px';
 }
 
 i = JSON.parse(localStorage.getItem("currentPage"));
@@ -98,8 +101,6 @@ if (wrongAnswers == null) {
 } // prevent scoreboard from displaying "null" after a page refresh
 
 function displayQuiz() {
-  main.innerHTML = '';
-  var quizContainer = document.createElement('div');
   quizContainer.innerHTML = "<p>" + quiz[i].question + "</p>";
   var options = quiz[i].choices;
   for (var k = 0; k < options.length; k++) {
@@ -115,21 +116,20 @@ function displayQuiz() {
     quizContainer.appendChild(document.createElement('br'));
 }
 
-  main.appendChild(quizContainer);
-  main.appendChild(submitButton);
+  quizContainer.appendChild(submitButton);
   submitButton.addEventListener('click', function checkAnswer() {
   'use strict';
   var userAnswer = document.querySelector('input:checked').id;
   localStorage.setItem("userAnswer", JSON.stringify(userAnswer));
   userAnswer = JSON.parse(localStorage.getItem("userAnswer"));
-  main.innerHTML = "<div>" + quiz[i].explanation + "</div>";
+  quizContainer.innerHTML = "<div>" + quiz[i].explanation + "</div>";
     if (userAnswer == quiz[i].correctAnswer) {
-        main.insertAdjacentHTML('afterbegin', '<h3 id="h3">Correct!</h3>');
+        quizContainer.insertAdjacentHTML('afterbegin', '<h3 id="h3">Correct!</h3>');
         rightAnswers += 1;  
         localStorage.setItem("currentRightAnswers", rightAnswers);
         rightAnswers = JSON.parse(localStorage.getItem("currentRightAnswers"));
       } else {
-        main.insertAdjacentHTML('afterbegin', '<h3 id="h3">Incorrect!</h3>');
+        quizContainer.insertAdjacentHTML('afterbegin', '<h3 id="h3">Incorrect!</h3>');
         wrongAnswers += 1;
         localStorage.setItem("currentWrongAnswers", wrongAnswers);
       }
@@ -140,7 +140,7 @@ function displayQuiz() {
   if (i === quiz.length) {
     displayResults();
   } else {
-    main.appendChild(nextButton);
+    quizContainer.appendChild(nextButton);
     results.appendChild(clearButton);
   }
 });
@@ -148,12 +148,12 @@ function displayQuiz() {
 
 function showResults () {
   pcnt = (100 * rightAnswers / (wrongAnswers + rightAnswers)).toFixed();
-  results.innerHTML = 'Correct: ' + rightAnswers + '<br>Incorrect: ' + wrongAnswers + '<br>';
+  results.innerHTML = '<div class="scoreboard">Correct: <span class="right">' + rightAnswers + '</span><br>Incorrect:  <span class="wrong">' + wrongAnswers + '</span><br></div>';
   results.appendChild(clearButton);
 }
 
 function displayResults() {
-  results.innerHTML = 'Correct: ' + rightAnswers + '<br>Incorrect: ' + wrongAnswers + '<br>Percentage Correct: ' + pcnt + '%<br>';
+  results.innerHTML = '<div class="scoreboard">Correct: <span class="right">' + rightAnswers + '</span><br>Incorrect:  <span class="wrong">' + wrongAnswers + '</span><br><br>Score: ' + pcnt + '%<br></div>';
   results.insertAdjacentHTML('beforeend', '<br><h3>Results</h3>');
   if (pcnt <= 20) {
     results.insertAdjacentHTML('beforeend', 'Novice (0-20%): You are blissfully unaware of this period in music history, and probably better off for it.');
@@ -168,7 +168,7 @@ function displayResults() {
   } else {
     results.insertAdjacentHTML('beforeend', 'Omniscient Genius (100%): You deserve a medal, or a sealed first-pressing of “Spiderland.”');
   }
-  results.insertAdjacentHTML('beforeend', '<br>')
+  results.insertAdjacentHTML('beforeend', '<br>');
   results.appendChild(clearButton);
 }
 
@@ -177,7 +177,7 @@ function reset() {
   rightAnswers = 0;
   wrongAnswers = 0;
   i = 0;
-  main.innerHTML = '';
+  quizContainer.innerHTML = '';
   results.innerHTML = '';
 }
 
@@ -186,12 +186,15 @@ window.onbeforeunload = (
 );
 
 beginButton.addEventListener('click', function () {
-  main.innerHTML = '';
+  quizContainer.innerHTML = '';
+  quizContainer.style.textAlign = 'left';
+  results.style.display = 'block';
   displayQuiz(i);
+  showResults();
 });
 
 nextButton.addEventListener('click', function () {
-  main.innerHTML = '';
+  quizContainer.innerHTML = '';
   displayQuiz(i);
 });
 
