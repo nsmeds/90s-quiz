@@ -81,7 +81,7 @@ function welcome() {
 }
 
 count = JSON.parse(localStorage.getItem("currentPage"));
-if (count === null || count === undefined) {
+if (!count) {
   count = 0;
   welcome();
 } else if (count === quiz.length) {
@@ -92,11 +92,11 @@ if (count === null || count === undefined) {
   displayQuiz(count);
 }
 
-if (rightAnswers == null) {
+if (!rightAnswers) {
   rightAnswers = 0;
 } // prevent scoreboard from displaying "null" after a page refresh
 
-if (wrongAnswers == null) {
+if (!wrongAnswers) {
   wrongAnswers = 0;
 } // prevent scoreboard from displaying "null" after a page refresh
 
