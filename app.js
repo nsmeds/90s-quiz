@@ -162,11 +162,11 @@ function displayResults() {
   } else if (pcnt <= 40) {
     results.insertAdjacentHTML('beforeend', 'Poseur (21-40%): Your trucker cap is weathered, but your knowledge is minimal.');
   } else if (pcnt <= 60) {
-    results.insertAdjacentHTML('beforeend', 'Dilettante (41-59%): You may not have owned any zines, tapes or vinyl in the 1990s, but you have done some online research.');
+    results.insertAdjacentHTML('beforeend', 'Dilettante (41-60%): You may not have owned any zines, tapes or vinyl in the 1990s, but you have done some online research.');
   } else if (pcnt <= 80) {
-    results.insertAdjacentHTML('beforeend', 'Nerd (60-79%): You were there at the time, but your memory is a little fuzzy.');
+    results.insertAdjacentHTML('beforeend', 'Nerd (61-80%): You were there at the time, but your memory is a little fuzzy.');
   } else if (pcnt < 99) {
-    results.insertAdjacentHTML('beforeend', 'Expert (80-99%): Your knowledge is impressive, albeit useless.');
+    results.insertAdjacentHTML('beforeend', 'Expert (81-99%): Your knowledge is impressive, albeit useless.');
   } else {
     results.insertAdjacentHTML('beforeend', 'Omniscient Genius (100%): You deserve a medal, or a sealed first-pressing of “Spiderland.”');
   }
