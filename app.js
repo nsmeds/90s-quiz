@@ -66,6 +66,21 @@ var quiz = [{
   correctAnswer: 1,
   explanation: "<img src='img/blonderedhead.jpg' alt='Blonde Redhead'><br>Simone and Amedeo Pace are twin brothers. According to legend, vocalist/guitarist Kazu Makino demanded that one of them grow a mustache so she could tell them apart."
 }, {
+  question: "Which of the following record labels was not based in Chicago?",
+  choices: ['Slumberland', 'Drag City', 'Touch \& Go', 'Thrill Jockey', 'Wax Trax!'],
+  correctAnswer: 0,
+  explanation: "<img src='img/chicago.jpg' alt='Chicago'><br>The Windy City has spawned many a great record label, but Slumberland came from Washington, D.C."
+}, {
+  question: "Stereolab was founded by Tim Gane and:",
+  choices: ['Tara Jane O\'Neil', 'Beck Hansen', 'Laetitia Sadier', 'Cynthia Dall', 'Matt Sweeney'],
+  correctAnswer: 2,
+  explanation: "<img src='img/stereolab.jpg' alt='Stereolab'><br>Gane and Sadier founded Stereolab in London in 1990."
+}, {
+  question: "Kim Deal of The Breeders was also in:",
+  choices: ['The Posies', 'The Promise Ring', 'The Pretenders', 'The Peechees', 'The Pixies'],
+  correctAnswer: 4,
+  explanation: "<img src='img/kimdeal.jpg' alt='Kim Deal'><br>Kim Deal has been a key member of several influential bands."
+}, {
   question: "Chris Lombardi is the founder of:",
   choices: ['Matador Records', 'Homestead Records', 'Drag City Records', 'DGC Records', 'Merge Records'],
   correctAnswer: 0,
@@ -109,9 +124,9 @@ function displayQuiz() {
     radio.value = options[k];
     radio.name = "question"+count;
     radio.id = options.indexOf(options[k]);
-    quizContainer.appendChild(radio);
     var label = document.createElement('label');
-    label.innerHTML = options[k];
+    label.appendChild(radio);
+    label.insertAdjacentHTML ('beforeend', options[k]);
     quizContainer.appendChild(label);
     quizContainer.appendChild(document.createElement('br'));
 }
