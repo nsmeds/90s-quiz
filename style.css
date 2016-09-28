@@ -32,6 +32,10 @@ h3, p {
   margin: 0.5em auto;
 }
 
+a {
+  text-decoration: none;
+}
+
 /**** Main Content Styles ****/
 
 #wrap {
@@ -136,17 +140,18 @@ footer ul li {
   text-align: center;
 }
 
-footer ul li a {
-  padding: 25px 10px 0px 10px;
+.social-icon {
+  padding: 20px 5px 0px 5px;
   margin-top: 0;
 }
 
 .social-icon:hover {
+ opacity: 0.7;
  transform: translateY(-10px);
  transition-duration: 0.3s;
 } 
 
-.social-icon:hover > .icon-label {
+.social-icon:hover .icon-label {
   visibility: visible;
 }
 
