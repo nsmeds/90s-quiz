@@ -109,9 +109,9 @@ function displayQuiz() {
     radio.value = options[k];
     radio.name = "question"+count;
     radio.id = options.indexOf(options[k]);
-    quizContainer.appendChild(radio);
     var label = document.createElement('label');
-    label.innerHTML = options[k];
+    label.appendChild(radio);
+    label.insertAdjacentHTML ('beforeend', options[k]);
     quizContainer.appendChild(label);
     quizContainer.appendChild(document.createElement('br'));
 }
