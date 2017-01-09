@@ -83,6 +83,10 @@ a {
   margin-bottom: 0.25em;
 }
 
+.radio {
+  margin-right: 0.5em;
+}
+
 .right {
   color: hsl(60,100%,50%);
 }

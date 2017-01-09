@@ -57,6 +57,7 @@ function displayQuiz() {
     radio.value = options[k];
     radio.name = "question"+count;
     radio.id = options.indexOf(options[k]);
+    radio.className = "radio";
     var label = document.createElement('label');
     label.appendChild(radio);
     label.insertAdjacentHTML ('beforeend', options[k]);
