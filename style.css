@@ -124,14 +124,6 @@ footer {
   margin-top: auto;
 }
 
-.icon-label {
-  margin: 0;
-  visibility: hidden;
-  color: hsl(2,57%,40%);
-  font-size: 0.9em;
-  font-weight: 700;
-}
-
 footer ul {
   display: flex;
   justify-content: center;
@@ -142,21 +134,6 @@ footer ul {
 footer ul li {
   min-width: 5em;
   text-align: center;
-}
-
-.social-icon {
-  padding: 20px 5px 0px 5px;
-  margin-top: 0;
-}
-
-.social-icon:hover {
- opacity: 0.7;
- transform: translateY(-10px);
- transition-duration: 0.3s;
-} 
-
-.social-icon:hover .icon-label {
-  visibility: visible;
 }
 
 /**** Media Query ****/
