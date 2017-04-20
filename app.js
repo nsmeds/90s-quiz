@@ -20,6 +20,7 @@ clearButton.id = "clear-button";
 rightAnswers = JSON.parse(localStorage.getItem("currentRightAnswers"));
 wrongAnswers = JSON.parse(localStorage.getItem("currentWrongAnswers"));
 
+
 function welcome() {
   results.style.display = 'none';
   quizContainer.innerHTML = "<p>Ready to test your knowledge of 1990s indie rock culture? These ten probing questions will determine whether you have what it takes to properly reminisce with the disaffected slackers of yesteryear.</p>";
@@ -27,6 +28,12 @@ function welcome() {
   quizContainer.style.textAlign = 'center';
   quizContainer.style.maxWidth = '600px';
 }
+
+function randomize(arr) {
+  arr.sort(function() {
+    return Math.random() - 0.5;
+  });
+};
 
 count = JSON.parse(localStorage.getItem("currentPage"));
 if (!count) {
@@ -63,7 +70,7 @@ function displayQuiz() {
     label.insertAdjacentHTML ('beforeend', options[k]);
     quizContainer.appendChild(label);
     quizContainer.appendChild(document.createElement('br'));
-}
+  }
 
   quizContainer.appendChild(submitButton);
   submitButton.addEventListener('click', function checkAnswer() {
@@ -72,27 +79,27 @@ function displayQuiz() {
     localStorage.setItem("userAnswer", JSON.stringify(userAnswer));
     userAnswer = JSON.parse(localStorage.getItem("userAnswer"));
     quizContainer.innerHTML = "<div>" + quiz[count].explanation + "</div>";
-      if (userAnswer == quiz[count].correctAnswer) {
-          quizContainer.insertAdjacentHTML('afterbegin', '<h3>Correct!</h3>');
-          rightAnswers += 1;  
-          localStorage.setItem("currentRightAnswers", rightAnswers);
-          rightAnswers = JSON.parse(localStorage.getItem("currentRightAnswers"));
-        } else {
-          quizContainer.insertAdjacentHTML('afterbegin', '<h3>Incorrect!</h3>');
-          wrongAnswers += 1;
-          localStorage.setItem("currentWrongAnswers", wrongAnswers);
-      }
+    if (userAnswer === quiz[count].correctAnswer) {
+      quizContainer.insertAdjacentHTML('afterbegin', '<h3>Correct!</h3>');
+      rightAnswers += 1;  
+      localStorage.setItem("currentRightAnswers", rightAnswers);
+      rightAnswers = JSON.parse(localStorage.getItem("currentRightAnswers"));
+    } else {
+      quizContainer.insertAdjacentHTML('afterbegin', '<h3>Incorrect!</h3>');
+      wrongAnswers += 1;
+      localStorage.setItem("currentWrongAnswers", wrongAnswers);
+    }
 
-  showResults();
-  count += 1;  
-  localStorage.setItem("currentPage", count);
-  if (count === quiz.length) {
-    displayResults();
-  } else {
-    quizContainer.appendChild(nextButton);
-    document.getElementById("scoreboard").appendChild(clearButton);
-  }
-});
+    showResults();
+    count += 1;  
+    localStorage.setItem("currentPage", count);
+    if (count === quiz.length) {
+      displayResults();
+    } else {
+      quizContainer.appendChild(nextButton);
+      document.getElementById("scoreboard").appendChild(clearButton);
+    }
+  });
 }
 
 function showResults () {
@@ -100,7 +107,7 @@ function showResults () {
   results.innerHTML = '<div id="scoreboard">Correct: <span class="right">' + rightAnswers + '</span><br>Incorrect:  <span class="wrong">' + wrongAnswers + '</span><br></div>';
   if (pcnt >= 0) {
     document.getElementById("scoreboard").insertAdjacentHTML('beforeend','<br>Score: ' + pcnt + '%<br>');
-        }
+  }
   document.getElementById("scoreboard").appendChild(clearButton);
 }
 
@@ -130,6 +137,7 @@ function reset() {
   count = 0;
   quizContainer.innerHTML = '';
   results.innerHTML = '';
+  randomize(quiz);
 }
 
 window.onbeforeunload = (
@@ -140,6 +148,7 @@ beginButton.addEventListener('click', function () {
   quizContainer.innerHTML = '';
   quizContainer.style.textAlign = 'left';
   results.style.display = 'block';
+  randomize(quiz);
   displayQuiz(count);
   showResults();
 });
